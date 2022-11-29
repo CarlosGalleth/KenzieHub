@@ -1,12 +1,20 @@
 import { Container, DontHaveAccount } from "./loginPage.js";
 import { Header } from "../header/header.jsx";
 
-export function LoginPage() {
+export function LoginPage({ navigate }) {
+  function handleSubmit(e) {
+    e.preventDefault();
+    navigate("/dashboard");
+  }
+  function handleRegister(e) {
+    e.preventDefault();
+    navigate("/register");
+  }
   return (
     <Container>
       <Header />
       <main>
-        <form>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <h3>Login</h3>
           <div>
             <label htmlFor="email">Email</label>
@@ -30,7 +38,7 @@ export function LoginPage() {
 
         <DontHaveAccount>
           <small>Ainda não possui uma conta?</small>
-          <button>Cadastre-se</button>
+          <button onClick={(e) => handleRegister(e)}>Cadastre-se</button>
         </DontHaveAccount>
       </main>
     </Container>

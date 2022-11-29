@@ -1,12 +1,16 @@
-import { Container } from "../loginPage/loginPage";
 import { HeaderRegister } from "../header/headerRegister";
+import { RegisterContainer } from "./registerPage";
 
-export function RegisterPage() {
+export function RegisterPage({ navigate }) {
+  function handleSubmit(e) {
+    e.preventDefault();
+    navigate("/login");
+  }
   return (
-    <Container>
-      <HeaderRegister />
+    <RegisterContainer>
+      <HeaderRegister navigate={navigate} />
       <main>
-        <form>
+        <form onSubmit={(e) => handleSubmit(e)}>
           <h3>Crie sua conta</h3>
           <small>Rápido e fácil, vamos nessa</small>
 
@@ -56,6 +60,6 @@ export function RegisterPage() {
           <button type="submit">Cadastrar</button>
         </form>
       </main>
-    </Container>
+    </RegisterContainer>
   );
 }
