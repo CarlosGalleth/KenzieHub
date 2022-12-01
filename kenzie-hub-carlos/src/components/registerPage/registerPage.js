@@ -52,6 +52,11 @@ export const RegisterContainer = styled.div`
         color: var(--fixed-white);
         padding-left: 15px;
       }
+
+      p {
+        color: var(--color-brand-1);
+        font-size: 13px;
+      }
     }
 
     button {
