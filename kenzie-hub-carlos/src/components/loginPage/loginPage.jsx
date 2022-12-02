@@ -28,21 +28,23 @@ export function LoginPage({ navigate }) {
         console.log(response);
         response.status === 200 &&
           navigate(`/dashboard/${response.data.user.name}`);
+        localStorage.setItem("kenzieHubUser", response.data.token);
       } catch (error) {
         console.log(error);
       }
     }
     fetchData();
   }
+
   function handleRegister(e) {
     e.preventDefault();
-    navigate("/register");
+    navigate("register");
   }
   return (
     <Container>
       <Header />
       <main>
-        <form onSubmit={handleSubmit(getData)}>
+        <form noValidate onSubmit={handleSubmit(getData)}>
           <h3>Login</h3>
           <div>
             <label htmlFor="email">Email</label>
