@@ -37,6 +37,10 @@ export const HeaderRegisterStyled = styled.header`
       color: var(--fixed-white);
       font-size: 17px;
     }
+
+    @media only screen and (max-width: 720px) {
+      width: 80%;
+    }
   }
 `;
 

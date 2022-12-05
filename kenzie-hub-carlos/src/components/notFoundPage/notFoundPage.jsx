@@ -1,5 +1,6 @@
 import { NotFoundContainer } from "./notFoundPage";
 import notFoundImg from "./notFound.svg";
+import { Back } from "./buttons/back";
 
 export function NotFoundPage({ navigate }) {
   function handleGoBack(e) {
@@ -9,7 +10,7 @@ export function NotFoundPage({ navigate }) {
   return (
     <NotFoundContainer>
       <img src={notFoundImg} alt="" />
-      <button onClick={(e) => handleGoBack(e)}>Voltar</button>
+      <Back handleGoBack={handleGoBack} />
     </NotFoundContainer>
   );
 }

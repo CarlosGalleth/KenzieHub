@@ -1,4 +1,5 @@
 import { HeaderRegisterStyled } from "./header.js";
+import { BackButton } from "./headerButtons/registerBackBtn.jsx";
 
 export function HeaderRegister({ navigate }) {
   function handleGoBack(e) {
@@ -9,7 +10,7 @@ export function HeaderRegister({ navigate }) {
     <HeaderRegisterStyled>
       <div>
         <h1>Kenzie Hub</h1>
-        <button onClick={(e) => handleGoBack(e)}>Voltar</button>
+        <BackButton handleGoBack={handleGoBack} />
       </div>
     </HeaderRegisterStyled>
   );

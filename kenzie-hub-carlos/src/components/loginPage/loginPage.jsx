@@ -1,21 +1,23 @@
 import { Container, DontHaveAccount } from "./loginPage.js";
 import { Header } from "../header/header.jsx";
 import { api } from "../../services/api.js";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { InputEmail } from "./inputs/inputEmail.jsx";
+import { InputPassword } from "./inputs/inputPassword.jsx";
+import { RegisterButton } from "./buttons/register.jsx";
+import { LoginButton } from "./buttons/login.jsx";
+import { formSchema } from "./yupValidation/loginValidation.jsx";
 
 export function LoginPage({ navigate }) {
-  const formSchema = yup.object().shape({
-    email: yup.string().required("Email obrigatório").email("Email inválido"),
-    password: yup.string().required("Senha obrigatória"),
-  });
+  const user = localStorage.getItem("kenzieHubUser");
+  user && localStorage.removeItem("kenzieHubUser");
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(formSchema()),
   });
   function getData({ email, password }) {
     const user = {
@@ -25,7 +27,6 @@ export function LoginPage({ navigate }) {
     async function fetchData() {
       try {
         const response = await api.post("sessions", user);
-        console.log(response);
         response.status === 200 &&
           navigate(`/dashboard/${response.data.user.name}`);
         localStorage.setItem("kenzieHubUser", response.data.token);
@@ -48,31 +49,20 @@ export function LoginPage({ navigate }) {
           <h3>Login</h3>
           <div>
             <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              type="text"
-              placeholder="Digite aqui seu email..."
-              autocomplete="off"
-              {...register("email")}
-            />
+            <InputEmail register={register} />
             {errors.email?.message && <p>{errors.email.message}</p>}
           </div>
           <div>
             <label htmlFor="password">Senha</label>
-            <input
-              id="password"
-              type="password"
-              placeholder="Digite aqui sua senha..."
-              {...register("password")}
-            />
+            <InputPassword register={register} />
             {errors.password?.message && <p>{errors.password.message}</p>}
           </div>
-          <button type="submit">Entrar</button>
+          <LoginButton />
         </form>
 
         <DontHaveAccount>
           <small>Ainda não possui uma conta?</small>
-          <button onClick={(e) => handleRegister(e)}>Cadastre-se</button>
+          <RegisterButton handleRegister={handleRegister} />
         </DontHaveAccount>
       </main>
     </Container>

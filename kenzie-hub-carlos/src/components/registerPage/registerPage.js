@@ -19,6 +19,10 @@ export const RegisterContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: var(--gap-4);
+
+    @media only screen and (max-width: 720px) {
+      width: 80%;
+    }
   }
 
   form {
