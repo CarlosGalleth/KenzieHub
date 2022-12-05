@@ -50,14 +50,11 @@ button {
   cursor: pointer;
   font-family: "Inter";
 }
-input {
+input, select {
   font-family: "Inter";
   padding-left: 15px;
 }
 label {
   width: max-content;
-}
-select {
-  font-family: "Inter";
 }
 `;

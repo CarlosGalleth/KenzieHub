@@ -67,6 +67,7 @@ export const HeaderDashboardStyled = styled.header`
       border-radius: var(--radius-2);
       color: var(--fixed-white);
       font-size: 17px;
+      border: none;
     }
   }
 `;
