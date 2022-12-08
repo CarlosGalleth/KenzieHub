@@ -3,12 +3,13 @@ import styled from "styled-components";
 export const MainContent = styled.main`
   background-color: var(--color-grey-1);
   width: 100%;
-  height: 100vh;
+  height: 100%;
   color: var(--fixed-white);
   font-size: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 100px;
 
   section {
     width: 100%;
@@ -86,6 +87,9 @@ export const MainContent = styled.main`
       }
 
       li {
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
         background-color: var(--color-grey-1);
         display: flex;
         justify-content: space-between;
@@ -115,6 +119,8 @@ export const MainContent = styled.main`
 
           p {
             color: var(--color-grey-4);
+            position: relative;
+            right: 55px;
           }
 
           button {
@@ -122,6 +128,9 @@ export const MainContent = styled.main`
             justify-content: center;
             align-items: center;
             border: none;
+            position: absolute;
+            right: 10px;
+            z-index: 2;
 
             @media only screen and (max-width: 400px) {
               width: 40px;

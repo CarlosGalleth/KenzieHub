@@ -39,6 +39,7 @@ export const GlobalStyle = createGlobalStyle`
 
 body {
   font-family: "Inter";
+  background-color: var(--color-grey-1);
 }
 a {
   text-decoration: none;

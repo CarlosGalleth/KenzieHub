@@ -4,7 +4,7 @@ export function InputEmail({ register }) {
       id="email"
       type="text"
       placeholder="Digite aqui seu email..."
-      autocomplete="off"
+      autoComplete="off"
       {...register("email")}
     />
   );

@@ -3,9 +3,9 @@ import { useState } from "react";
 import { api } from "../../services/api";
 import { Tech } from "./techs";
 
-export function TechsList() {
+export function TechsList({ setPatchModal, setModal, setTechId }) {
   const userToken = localStorage.getItem("kenzieHubUser");
-  const [carai, setCarai] = useState([]);
+  const [tech, setTech] = useState([]);
   useEffect(() => {
     async function getTechs() {
       const response = await api.get("profile", {
@@ -13,14 +13,22 @@ export function TechsList() {
           Authorization: `Bearer ${userToken}`,
         },
       });
-      setCarai(response.data.techs);
+      setTech(response.data.techs);
     }
     getTechs();
   }, []);
   return (
     <ul>
-      {carai.map((elem) => {
-        return <Tech key={elem.id} elem={elem} />;
+      {tech.map((elem) => {
+        return (
+          <Tech
+            key={elem.id}
+            elem={elem}
+            setPatchModal={setPatchModal}
+            setModal={setModal}
+            setTechId={setTechId}
+          />
+        );
       })}
     </ul>
   );

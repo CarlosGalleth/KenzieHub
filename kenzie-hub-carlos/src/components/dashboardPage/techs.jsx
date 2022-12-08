@@ -1,6 +1,6 @@
 import trash from "../../assets/trash.svg";
 import { api } from "../../services/api";
-export function Tech({ elem }) {
+export function Tech({ elem, setPatchModal, setModal, setTechId }) {
   async function handleDelete() {
     await api.delete(`users/techs/${elem.id}`, {
       headers: {
@@ -8,8 +8,13 @@ export function Tech({ elem }) {
       },
     });
   }
+  function handlePatch() {
+    setModal(true);
+    setPatchModal(true);
+    setTechId(elem.id);
+  }
   return (
-    <li>
+    <li onClick={handlePatch}>
       <h3>{elem.title}</h3>
       <div>
         <p>{elem.status}</p>

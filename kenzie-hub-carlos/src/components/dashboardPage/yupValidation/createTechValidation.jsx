@@ -5,3 +5,9 @@ export function formCreateSchema() {
     status: yup.string(),
   });
 }
+export function formPatchSchema() {
+  return yup.object().shape({
+    title: yup.string(),
+    status: yup.string().required(""),
+  });
+}

@@ -1,6 +1,5 @@
 import { Container, DontHaveAccount } from "./loginPage.js";
 import { Header } from "../header/header.jsx";
-import { api } from "../../services/api.js";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { InputEmail } from "./inputs/inputEmail.jsx";
@@ -8,10 +7,14 @@ import { InputPassword } from "./inputs/inputPassword.jsx";
 import { RegisterButton } from "./buttons/register.jsx";
 import { LoginButton } from "./buttons/login.jsx";
 import { formSchema } from "./yupValidation/loginValidation.jsx";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/authContext.jsx";
 
 export function LoginPage({ navigate }) {
   const user = localStorage.getItem("kenzieHubUser");
   user && localStorage.removeItem("kenzieHubUser");
+  const { getData } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
@@ -19,28 +22,11 @@ export function LoginPage({ navigate }) {
   } = useForm({
     resolver: yupResolver(formSchema()),
   });
-  function getData({ email, password }) {
-    const user = {
-      email: email,
-      password: password,
-    };
-    async function fetchData() {
-      try {
-        const response = await api.post("sessions", user);
-        response.status === 200 &&
-          navigate(`/dashboard/${response.data.user.name}`);
-        localStorage.setItem("kenzieHubUser", response.data.token);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchData();
-  }
 
-  function handleRegister(e) {
-    e.preventDefault();
+  function handleRegister() {
     navigate("register");
   }
+
   return (
     <Container>
       <Header />

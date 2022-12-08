@@ -11,6 +11,7 @@ export const Modal = styled.div`
   justify-content: center;
   align-items: center;
   color: var(--fixed-white);
+  z-index: 3;
   div {
     display: flex;
     flex-direction: column;
@@ -106,4 +107,11 @@ export const Modal = styled.div`
       }
     }
   }
+`;
+export const ButtonCancel = styled.button`
+  height: 60px;
+  background-color: var(--color-grey-4) !important;
+  border-radius: var(--radius-1);
+  color: var(--fixed-white);
+  font-size: 18px;
 `;
