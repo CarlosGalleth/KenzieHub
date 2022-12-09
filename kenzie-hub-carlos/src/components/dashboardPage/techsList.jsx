@@ -13,10 +13,10 @@ export function TechsList({ setPatchModal, setModal, setTechId }) {
           Authorization: `Bearer ${userToken}`,
         },
       });
-      setTech(response.data.techs);
+      setTech([...response.data.techs]);
     }
     getTechs();
-  }, []);
+  }, [tech]);
   return (
     <ul>
       {tech.map((elem) => {

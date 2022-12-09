@@ -92,58 +92,61 @@ export const MainContent = styled.main`
         cursor: pointer;
         background-color: var(--color-grey-1);
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        width: 100%;
-        padding: 20px;
         border-radius: var(--radius-2);
 
         :hover {
           background-color: var(--color-grey-3);
         }
 
-        h3 {
-          @media only screen and (max-width: 400px) {
-            font-size: 16px;
+        div {
+          width: 97% !important;
+          padding: 10px;
+          display: flex;
+          margin: 0 !important;
+          justify-content: space-between;
+
+          h3 {
+            @media only screen and (max-width: 400px) {
+              font-size: 16px;
+            }
+          }
+
+          div {
+            width: max-content !important;
+            margin-top: 0px;
+
+            @media only screen and (max-width: 400px) {
+              gap: var(--gap-9);
+              font-size: 15px;
+            }
+
+            p {
+              color: var(--color-grey-4);
+            }
           }
         }
 
-        div {
-          width: max-content;
-          margin-top: 0px;
+        button {
+          background-color: transparent;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: none;
+          position: relative;
+          z-index: 2;
 
           @media only screen and (max-width: 400px) {
-            gap: var(--gap-9);
-            font-size: 15px;
+            width: 40px;
+            height: 40px;
           }
 
-          p {
-            color: var(--color-grey-4);
-            position: relative;
-            right: 55px;
-          }
-
-          button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: none;
-            position: absolute;
-            right: 10px;
-            z-index: 2;
+          img {
+            width: 30px;
 
             @media only screen and (max-width: 400px) {
-              width: 40px;
-              height: 40px;
-            }
-
-            img {
               width: 30px;
-
-              @media only screen and (max-width: 400px) {
-                width: 30px;
-                height: 30px;
-              }
+              height: 30px;
             }
           }
         }

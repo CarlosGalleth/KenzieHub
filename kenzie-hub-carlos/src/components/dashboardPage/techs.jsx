@@ -14,14 +14,16 @@ export function Tech({ elem, setPatchModal, setModal, setTechId }) {
     setTechId(elem.id);
   }
   return (
-    <li onClick={handlePatch}>
-      <h3>{elem.title}</h3>
-      <div>
-        <p>{elem.status}</p>
-        <button onClick={handleDelete}>
-          <img src={trash} alt="" />
-        </button>
+    <li>
+      <div onClick={handlePatch}>
+        <h3>{elem.title}</h3>
+        <div>
+          <p>{elem.status}</p>
+        </div>
       </div>
+      <button onClick={handleDelete}>
+        <img src={trash} alt="" />
+      </button>
     </li>
   );
 }
