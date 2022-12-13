@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { api } from "../../services/api";
 import { HeaderDashboard } from "../header/headerDashboard";
-import { MainContent } from "./dashboardPage";
+
 import { Modal } from "./modal";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formCreateSchema } from "./yupValidation/createTechValidation";
-import { TechsList } from "./techsList";
+
 import { Navigate, useParams } from "react-router-dom";
 import { ModalIntern } from "./modalIntern";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/authContext";
-import { useEffect } from "react";
+import { MainContentContainer } from "./mainContent";
 
 export function DashboardPage({ navigate }) {
   const userToken = localStorage.getItem("kenzieHubUser");
@@ -21,6 +21,10 @@ export function DashboardPage({ navigate }) {
   const [module, setModule] = useState();
   const { name } = useParams();
   const { user, loading } = useContext(AuthContext);
+
+  if (!userToken) {
+    navigate("/login");
+  }
 
   const {
     register,
@@ -79,25 +83,14 @@ export function DashboardPage({ navigate }) {
             </Modal>
           )}
           <HeaderDashboard navigate={navigate} />
-          <MainContent>
-            <section>
-              <div>
-                <h3>Olá, {name[0].toUpperCase() + name.substring(1)}</h3>
-                <p>{module}</p>
-              </div>
-            </section>
-            <div>
-              <div>
-                <h4>Tecnologias</h4>
-                <button onClick={createTech}>+</button>
-              </div>
-              <TechsList
-                setPatchModal={setPatchModal}
-                setModal={setModal}
-                setTechId={setTechId}
-              />
-            </div>
-          </MainContent>
+          <MainContentContainer
+            name={name}
+            module={module}
+            createTech={createTech}
+            setPatchModal={setPatchModal}
+            setModal={setModal}
+            setTechId={setTechId}
+          />
         </div>
       ) : (
         <Navigate to="/login" />
